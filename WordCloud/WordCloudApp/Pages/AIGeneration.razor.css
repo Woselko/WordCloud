@@ -1,0 +1,132 @@
+.robot-input {
+    background-color: #f3f3f3;
+    border: none;
+    border-radius: 12px;
+    color: #555;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    width: 290px;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    /*    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);*/
+    border: 0 none #FFF;
+    overflow: hidden;
+    outline: none;
+    /*    transition: box-shadow 0.3s ease;*/
+    max-height: 150px;
+    min-height: 150px;
+    margin-bottom:90px;
+}
+    .robot-input::placeholder {
+        color: #999;
+    }
+
+    .robot-input:focus {
+        border: 0 none #FFF;
+        overflow: hidden;
+        outline: none;
+    }
+/*.cloud {
+    position: relative;
+    width: 500px;
+    height: 250px;
+    border-radius: 50%;
+    background-color: #f3f3f3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    .cloud::before,
+    .cloud::after {
+        content: '';
+        position: absolute;
+        background-color: #f3f3f3;
+        border-radius: 50%;
+    }
+
+    .cloud::before {
+        width: 200px;
+        height: 200px;
+        top: -75px;
+        left: 75px;
+    }
+
+    .cloud::after {
+        width: 250px;
+        height: 250px;
+        top: -125px;
+        right: 75px;
+    }*/
+.aigeneration {
+    margin-top: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cloudTextBox {
+    z-index: 2;
+    position: absolute
+}
+.cloud-container {
+    position:absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cloud-container1 {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 120px;
+}
+
+.cloud-container2 {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 200px;
+}
+
+.cloud {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #f3f3f3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    .cloud::before,
+    .cloud::after {
+        content: '';
+        position: absolute;
+        background-color: #f3f3f3;
+        border-radius: 50%;
+    }
+
+    .cloud::before {
+        width: 160px;
+        height: 160px;
+        top: -60px;
+        left: 60px;
+    }
+
+    .cloud::after {
+        width: 200px;
+        height: 200px;
+        top: -100px;
+        right: 60px;
+    }
+
+.submitlink{
+    margin-top: 150px;
+}
