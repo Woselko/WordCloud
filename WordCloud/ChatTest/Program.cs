@@ -11,62 +11,71 @@ namespace ChatTest
         //static async Task Main(string[] args)
         //{
         //    IOpenAIProxy chatOpenAI = new OpenAIProxy(
-        //        apiKey: "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",
+        //        apiKey: "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",
         //        organizationId: "org-FLhGnvaeHySTUD1aFQFWPnYt");
 
         //    var msg = Console.ReadLine();
 
         //    do
         //    {
-        //        var results = await chatOpenAI.SendChatMessage(msg);
-
-        //        foreach (var item in results)
+        //        if(!string.IsNullOrEmpty(msg))
         //        {
-        //            Console.WriteLine($"{item.Role}: {item.Content}");
+        //            var results = await chatOpenAI.SendChatMessage(msg);
+
+        //            foreach (var item in results)
+        //            {
+        //                Console.WriteLine($"{item.Role}: {item.Content}");
+        //            }
+
+        //            Console.WriteLine("Next Prompt:");
         //        }
 
-        //        Console.WriteLine("Next Prompt:");
         //        msg = Console.ReadLine();
 
         //    } while (msg != "bye");
         //}
         static async Task Main(string[] args)
         {
-            var openAIConfigurations = new OpenAIConfigurations
-            {
-                ApiKey = "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",
-                ApiUrl = "https://api.openai.com"
-            };
+            //var openAIConfigurations = new OpenAIConfigurations
+            //{
+            //    ApiKey = "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",
+            //    ApiUrl = "https://api.openai.com"
+            //};
 
-            IOpenAIClient openAIClient =
-                new OpenAIClient(openAIConfigurations);
+            //IOpenAIClient openAIClient =
+            //    new OpenAIClient(openAIConfigurations);
 
-            MemoryStream memoryStream = CreateRandomStream();
+            //MemoryStream memoryStream = CreateRandomStream();
 
-            var aiFile = new AIFile
-            {
-                Request = new AIFileRequest
-                {
-                    Name = "Test",
-                    Content = memoryStream,
-                    Purpose = "fine-tune"
-                }
-            };
+            //var aiFile = new AIFile
+            //{
+            //    Request = new AIFileRequest
+            //    {
+            //        Name = "Test",
+            //        Content = memoryStream,
+            //        Purpose = "fine-tune"
+            //    }
+            //};
 
-            AIFile file = await openAIClient.AIFiles
-                .UploadFileAsync(aiFile);
+            //AIFile file = await openAIClient.AIFiles
+            //    .UploadFileAsync(aiFile);
 
-            var fineTune = new FineTune();
-            fineTune.Request = new FineTuneRequest();
+            //var fineTune = new FineTune();
+            //fineTune.Request = new FineTuneRequest();
 
-            fineTune.Request.FileId =
-                file.Response.Id;
+            //fineTune.Request.FileId =
+            //    file.Response.Id;
 
-            FineTune fineTuneResult =
-                await openAIClient.FineTuneClient
-                    .SubmitFineTuneAsync(fineTune);
+            //FineTune fineTuneResult =
+            //    await openAIClient.FineTuneClient
+            //        .SubmitFineTuneAsync(fineTune);
 
-            Console.WriteLine(fineTuneResult);
+            //Console.WriteLine(fineTuneResult);
+
+            var chatGPT = new ChatGPT();
+            Console.WriteLine("Waiting for response...");
+            string response = await chatGPT.GenerateLoremIpsum();
+            Console.WriteLine(response);
         }
 
         private static MemoryStream CreateRandomStream()

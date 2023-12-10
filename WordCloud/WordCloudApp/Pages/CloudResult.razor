@@ -1,0 +1,13 @@
+﻿@page "/CloudResult/{Result}"
+
+
+<p>
+    <span>@Result</span>
+</p>
+
+
+@code {
+
+    [Parameter]
+    public string? Result { get; set; }
+}
