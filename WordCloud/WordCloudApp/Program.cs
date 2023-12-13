@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using WordCloudApp.Areas.Identity;
 using WordCloudApp.Data;
+using WordCloudApp.Data.Entities;
 
 namespace WordCloudApp
 {
@@ -16,17 +18,18 @@ namespace WordCloudApp
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            var connectionString = builder.Configuration.GetConnectionString("WoselkoConnectionStringDev_WordCloud_v1") ?? throw new InvalidOperationException("Connection string 'WoselkoConnectionStringDev_WordCloud_v1' not found.");
+            builder.Services.AddDbContext<WordCloudDbContext>(options =>
                 options.UseSqlServer(connectionString));
+
+            builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<WordCloudDbContext>();
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             builder.Services.AddSingleton<WeatherForecastService>();
-
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -8,6 +8,13 @@ html, body {
     text-align: center;
     font-size: 20px;
 }
+.colorfullspan {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
 .errorspan {
     background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
     -webkit-background-clip: text;
@@ -118,6 +125,7 @@ a{
 }
 
 .hoverOwn {
+    font-style: italic;
     position: relative;
     color: white;
 }

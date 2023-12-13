@@ -1,1 +1,90 @@
 ﻿@page "/Crazy"
+@using KnowledgePicker.WordCloud.Coloring;
+@using KnowledgePicker.WordCloud.Drawing;
+@using KnowledgePicker.WordCloud.Layouts;
+@using KnowledgePicker.WordCloud.Primitives;
+@using KnowledgePicker.WordCloud;
+@using KnowledgePicker.WordCloud.Sizers;
+@using SkiaSharp;
+
+
+<svg viewBox="0,25,@wordCloud.Width,@wordCloud.Height">
+    @* style="max-width:600px; max-height:400px *@"
+@foreach (var (item, fontSize) in items)
+{
+    const string format = "0.##"; // Use at most 2 decimal places.
+    var x = (item.Location.X - item.Measured.Left).ToString(format);
+    var y = (item.Location.Y - item.Measured.Top).ToString(format);
+    var fs = fontSize.ToString(format);
+    var color = wcg.GetColorHexString(item);
+    <text><text transform="translate(@x, @y)" font-size="@fs" fill="@color">@item.Entry.Word</text> </text>
+}
+</svg>
+
+@code{
+    private WordCloudInput wordCloud;
+    IEnumerable<(LayoutItem Item, double FontSize)> items;
+    IEnumerable<WordCloudEntry> wordEntries;
+    private Dictionary<string, int> frequecies = new Dictionary<string, int>
+        {
+            { "Woselko", 6 },
+            { "Blazor", 3 },
+            { "Programming", 8 },
+            { "FunctionApp", 4 },
+            { "Algorithms", 5 },
+            { "Git", 3 },
+            { "Pizza", 4 },
+            { "Dictionary", 5 },
+            { "WebApp", 10 },
+            { "Coding", 5 },
+            { "Frontend", 3 },
+            { "WordCloud", 4 },
+            { "API", 5 },
+            { "C#", 10 },
+            { "Backend", 5 },
+            { ".NET", 6 },
+            { "GPT", 3 },
+            { "AI Generation", 8 },
+            { "DataMining", 4 },
+            { "Science", 5 },
+            { "Analysis", 3 },
+            { "Data", 4 },
+            { "Computing", 5 },
+            { "Econometrics", 10 },
+            { "Charts", 5 },
+        };
+
+    private WordCloudGenerator<SKBitmap> wcg;
+
+
+    protected override Task OnParametersSetAsync()
+    {
+        wordEntries = frequecies.Select(p => new WordCloudEntry(p.Key, p.Value));
+        wordCloud = new WordCloudInput(wordEntries)
+            {
+                Width = 400,
+                Height = 180,
+                //Width = 1000,
+                //Height = 1000,
+                MinFontSize = 8,
+                MaxFontSize = 20,
+            };
+
+        var sizer = new LogSizer(wordCloud);
+        var typeface = SKTypeface.FromFamilyName("DejaVu Serif", SKFontStyle.Bold);
+        using var engine = new SkGraphicEngine(sizer, wordCloud, typeface);
+        var layout = new SpiralLayout(wordCloud);
+        var randomColorizer = new RandomColorizer(); // optional
+        wcg = new WordCloudGenerator<SKBitmap>(wordCloud, engine, layout, randomColorizer);
+        items = wcg.Arrange();
+        using var final = new SKBitmap(wordCloud.Width, wordCloud.Height);
+        using var canvas = new SKCanvas(final);
+
+        // Draw on white background.
+        canvas.Clear(SKColors.White);
+        using var bitmap = wcg.Draw();
+        canvas.DrawBitmap(bitmap, 0, 0);
+
+        return base.OnParametersSetAsync();
+    }
+}

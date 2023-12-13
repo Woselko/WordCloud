@@ -5,7 +5,11 @@ VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordCloudApp", "WordCloudApp\WordCloudApp.csproj", "{7887BA83-5D5C-42D4-9BDD-C8E6C7A7F920}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatTest", "ChatTest\ChatTest.csproj", "{D738BE4C-4C46-4D31-8117-23EE8A5146C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatTest", "ChatTest\ChatTest.csproj", "{D738BE4C-4C46-4D31-8117-23EE8A5146C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerationWordCloudFuncApp", "GenerationWordCloudFuncApp\GenerationWordCloudFuncApp.csproj", "{84B4C8D5-806C-46C1-B2D3-0144BCAEF9BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordCloudGenerator", "WordCloudGenerator\WordCloudGenerator.csproj", "{A6DC840B-1609-46DA-96EB-36E48BF42A2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{D738BE4C-4C46-4D31-8117-23EE8A5146C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D738BE4C-4C46-4D31-8117-23EE8A5146C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D738BE4C-4C46-4D31-8117-23EE8A5146C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84B4C8D5-806C-46C1-B2D3-0144BCAEF9BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84B4C8D5-806C-46C1-B2D3-0144BCAEF9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84B4C8D5-806C-46C1-B2D3-0144BCAEF9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84B4C8D5-806C-46C1-B2D3-0144BCAEF9BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6DC840B-1609-46DA-96EB-36E48BF42A2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6DC840B-1609-46DA-96EB-36E48BF42A2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6DC840B-1609-46DA-96EB-36E48BF42A2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6DC840B-1609-46DA-96EB-36E48BF42A2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

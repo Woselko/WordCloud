@@ -1,12 +1,14 @@
 ﻿<AuthorizeView>
     <Authorized>
-        <a href="Identity/Account/Manage">Hello, @context.User.Identity?.Name!</a>
+        <a href="Identity/Account/Manage"><span class="hoverOwn">My Clouds</span></a>
+        <a href="Identity/Account/Manage"><span class="hoverOwn">@context.User.Identity?.Name</span></a>
         <form method="post" action="Identity/Account/Logout">
-            <button type="submit" class="nav-link btn btn-link">Log out</button>
+            <button type="submit" class="nav-link btn btn-link"><span class="hoverOwn">Log out</span></button>
         </form>
     </Authorized>
     <NotAuthorized>
-        <a href="Identity/Account/Register">Register</a>
-        <a href="Identity/Account/Login">Log in</a>
+        <a href="About"><span class="hoverOwn">About</span></a>
+        <a href="Identity/Account/Register"><span class="hoverOwn">Register</span></a>
+        <a href="Identity/Account/Login"><span class="hoverOwn">Log in</span></a>
     </NotAuthorized>
 </AuthorizeView>

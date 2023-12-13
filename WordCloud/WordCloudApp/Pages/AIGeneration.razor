@@ -21,9 +21,21 @@
         </div>
         <div >
             <div class="submitlink" hidden="@(!IsWaiting)">
-                <span class="errorspan">
-                    Loading...
-                </span>
+                <div class="errorspan">
+                    Loading
+                </div>
+                <div class="center">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
             </div>
             <div hidden="@IsWaiting" class="submitlink">
                 <div class="nobox">
@@ -62,6 +74,7 @@
             HideErrorSpan = true;
         }
     }
+
 
     protected async Task GetInputForWordCloudAsync()
     {
