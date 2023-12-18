@@ -1,0 +1,116 @@
+﻿@implements IDisposable
+@inject NavigationManager NavigationManager
+
+<div class="top-row ps-6 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href=""><span class="hoverOwn"> WordCloud </span><span class="oi oi-cloud" aria-hidden="true"></span></a>
+        <button title="Navigation menu" class="navbar-toggler" onclick="MyFunction()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div id="toggler" class="collapse nav-scrollable" onclick="MyFunction()">
+    <nav class="flex-column">
+        <div class="nav-item px-6">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-cloud" aria-hidden="true"></span> <span class="hoverOwnRight">Home</span>
+            </NavLink>
+        </div>
+        <div class="nav-item px-6">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-infinity" aria-hidden="true"></span> <span class="hoverOwnRight">Random Cloud</span>
+            </NavLink>
+        </div>
+        <div class="nav-item px-6">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> <span class="hoverOwnRight">Generate words</span>
+            </NavLink>
+        </div>
+        <div class="nav-item px-6">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-cloud-upload" aria-hidden="true"></span> <span class="hoverOwnRight">Upload CSV</span>
+            </NavLink>
+        </div>
+        <div class="nav-item px-6">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-musical-note" aria-hidden="true"></span> <span class="hoverOwnRight">Music</span>
+            </NavLink>
+        </div>
+        <div class="nav-item px-6">
+            <NavLink class="nav-link" href="Crazy">
+                <span class="oi oi-code" aria-hidden="true"></span> <span class="hoverOwnRight">CrazyShit</span>
+            </NavLink>
+        </div>
+        <AuthorizeView>
+@*             <Authorized>
+                <div class="nav-item px-6">
+                    <form action="Account/Logout" method="post">
+                        <AntiforgeryToken />
+                        <input type="hidden" name="ReturnUrl" value="@currentUrl" />
+                        <button type="submit" class="nav-link">
+                            <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
+                        </button>
+                    </form>
+                </div>
+            </Authorized> *@
+            <NotAuthorized>
+                <div class="nav-item px-6">
+                    <NavLink class="nav-link" href="Account/Register">
+                        <span class="oi oi-person" aria-hidden="true"></span> <span class="hoverOwnRight">Register</span>
+                    </NavLink>
+                </div>
+                <div class="nav-item px-6">
+                    <NavLink class="nav-link" href="Account/Login">
+                        <span class="oi oi-task" aria-hidden="true"></span>  <span class="hoverOwnRight">Login</span>
+                    </NavLink>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+    </nav>
+</div>
+
+<script>
+    function MyFunction() {
+        var toggler = document.getElementById("toggler");
+
+        if (toggler.classList.contains("collapse")) {
+            toggler.classList.remove("collapse");
+            // Add your code to perform actions when the class is removed
+        } else {
+            toggler.classList.add("collapse");
+            // Add your code to perform actions when the class is added
+        }
+    }
+</script>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private string? currentUrl;
+
+    protected override void OnInitialized()
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        NavigationManager.LocationChanged += OnLocationChanged;
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}
+

@@ -1,0 +1,64 @@
+﻿@page "/"
+
+<PageTitle>Home</PageTitle>
+<div>
+    <div>
+        <div id="resultArr" class="box">
+            <div>
+                WordCloud by Wosełko
+            </div><br />
+        </div>
+        <div class="nobox">
+            <div>
+                <NavLink class="nav-link" href="CreateWordCloud">
+                    <span class="hoverOwn">Create WordCloud</span>
+                </NavLink>
+            </div><br />
+            <div>
+                <NavLink class="nav-link" href="AIGeneration">
+                    <span class="hoverOwn">AI Generation</span>
+                </NavLink>
+            </div><br />
+            <div>
+                <NavLink class="nav-link" href="About">
+                    <span class="hoverOwn">About</span>
+                </NavLink>
+            </div><br />
+            <div>
+                <NavLink class="nav-link" href="OtherProducts">
+                    <span class="hoverOwn">Check other products</span>
+                </NavLink>
+            </div><br />
+        </div>
+    </div>
+</div>
+<div class="@_alertCss m-2">
+    @_alertText
+</div>
+
+<div hidden="@_rendered2">toggle div test</div>
+<button @onclick=ToggleButton>toggle button test</button>
+
+@code {
+    private string _toggleStyle = "alert alert-success";
+    private bool _rendered;
+    private bool _rendered2;
+    private string _alertCss => _rendered ? "alert alert-success" : "alert alert-danger";
+    private string _alertText => _rendered ? "Interactively Rendered" : "Statically Rendered";
+
+    private void ToggleButton()
+    {
+        _rendered2 = !_rendered2;
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _rendered = true;
+            // We Shouldn't really do this but we need to display the result of the component mutation
+            // OnAfterRender should only normally be used for JSInterop code
+            this.StateHasChanged();
+        }
+    }
+}

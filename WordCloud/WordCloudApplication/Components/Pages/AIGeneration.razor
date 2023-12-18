@@ -1,0 +1,97 @@
+﻿@* @inherits LayoutComponentBase*@
+@page "/AIGeneration"
+@using WordCloudApplication.Services;
+@inject NavigationManager NavigationManager
+
+<div class="aigeneration-container">
+    <form class="form" action="submit">
+        <div class="aigeneration">
+            <div class="cloudTextBox">
+                <textarea @oninput=" (e)=>SetMessageValue(e.Value.ToString())" value="@Message" name="text" type="text" class="robot-input" cols="40" rows="5" placeholder=">>> I hate frontend..."></textarea>
+            </div>
+            <div class="cloud-container">
+                <div class="cloud"></div>
+            </div>
+            <div class="cloud-container1">
+                <div class="cloud"></div>
+            </div>
+            <div class="cloud-container2">
+                <div class="cloud"></div>
+            </div>
+        </div>
+        <div >
+            <div class="submitlink" hidden="@(!IsWaiting)">
+                <div class="errorspan">
+                    Loading
+                </div>
+                <div class="center">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
+            </div>
+            <div hidden="@IsWaiting" class="submitlink">
+                <div class="nobox">
+                    <div>
+                        <NavLink @onclick="GetInputForWordCloudAsync">
+                            <span class="hoverOwn">Generate </span>
+                        </NavLink>
+                    </div><br />
+                </div>
+            </div>
+            <div hidden="@HideErrorSpan" class="nobox">
+                <span class="errorspan">Provide input data</span>
+            </div>
+        </div>
+    </form> 
+</div>
+
+
+@code {
+
+    private string? Message { get; set; }
+    private string? temp { get; set; }
+    private bool HideErrorSpan{ get; set; } = true;
+    private bool IsWaiting { get; set; } = false;
+
+
+    private void SetMessageValue(string message)
+    {
+        Message = message;
+        if (string.IsNullOrEmpty(Message))
+        {
+            HideErrorSpan = false;
+        }
+        else
+        {
+            HideErrorSpan = true;
+        }
+    }
+
+
+    protected async Task GetInputForWordCloudAsync()
+    {
+        if (!string.IsNullOrEmpty(Message))
+        {
+            HideErrorSpan = true;
+            IsWaiting = true;
+            AIMessageHandler handler = new AIMessageHandler();
+            var result = await Task.Run(() => handler.GetInputForWordCloudAsync(Message));
+            NavigationManager.NavigateTo($"/CloudResult/{result}");
+            IsWaiting = false;
+        }
+        else
+        {
+            HideErrorSpan = false;
+        }
+    }
+
+}
+
