@@ -189,11 +189,11 @@ namespace WordCloudApplication.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "8587f247-bc26-41fa-bd99-ef7613887e82", "2", "Developer", "Developer" },
-                    { "95a96bb7-9496-48b1-96fa-a2b61df18e94", "4", "VerifiedUser", "VerifiedUser" },
-                    { "96b188a5-ec86-4171-aeae-e86ab13c498c", "5", "User", "User" },
-                    { "9d03b128-bac9-4639-8ac7-c57ef98f9ea1", "3", "PremiumUser", "PremiumUser" },
-                    { "b4a36643-d169-4b02-afb1-c62f70649f85", "1", "Admin", "Admin" }
+                    { "2aee7e21-81e7-4161-9236-4535b684954e", "2", "Developer", "Developer" },
+                    { "4ae90896-bb7f-412b-a3b2-4a7c193bad75", "5", "User", "User" },
+                    { "70e4ec3f-ab86-4349-ad29-bb67b0d19895", "3", "PremiumUser", "PremiumUser" },
+                    { "af6cc158-fa01-4199-92d8-963f4ba475a9", "4", "VerifiedUser", "VerifiedUser" },
+                    { "fe8b6217-bf53-406c-9e2c-f916ec10e967", "1", "Admin", "Admin" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -12,7 +12,7 @@ using WordCloudApplication.Data;
 namespace WordCloudApplication.Migrations
 {
     [DbContext(typeof(WordCloudDbContext))]
-    [Migration("20231215124436_INIT")]
+    [Migration("20231218211632_INIT")]
     partial class INIT
     {
         /// <inheritdoc />
@@ -54,35 +54,35 @@ namespace WordCloudApplication.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b4a36643-d169-4b02-afb1-c62f70649f85",
+                            Id = "fe8b6217-bf53-406c-9e2c-f916ec10e967",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "Admin"
                         },
                         new
                         {
-                            Id = "8587f247-bc26-41fa-bd99-ef7613887e82",
+                            Id = "2aee7e21-81e7-4161-9236-4535b684954e",
                             ConcurrencyStamp = "2",
                             Name = "Developer",
                             NormalizedName = "Developer"
                         },
                         new
                         {
-                            Id = "9d03b128-bac9-4639-8ac7-c57ef98f9ea1",
+                            Id = "70e4ec3f-ab86-4349-ad29-bb67b0d19895",
                             ConcurrencyStamp = "3",
                             Name = "PremiumUser",
                             NormalizedName = "PremiumUser"
                         },
                         new
                         {
-                            Id = "95a96bb7-9496-48b1-96fa-a2b61df18e94",
+                            Id = "af6cc158-fa01-4199-92d8-963f4ba475a9",
                             ConcurrencyStamp = "4",
                             Name = "VerifiedUser",
                             NormalizedName = "VerifiedUser"
                         },
                         new
                         {
-                            Id = "96b188a5-ec86-4171-aeae-e86ab13c498c",
+                            Id = "4ae90896-bb7f-412b-a3b2-4a7c193bad75",
                             ConcurrencyStamp = "5",
                             Name = "User",
                             NormalizedName = "User"
