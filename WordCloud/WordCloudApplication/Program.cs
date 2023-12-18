@@ -35,6 +35,12 @@ namespace WordCloudApplication
                 googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
             });
+            builder.Services.AddAuthentication().AddFacebook(options =>
+            {
+                options.AppId = configuration["Authentication:Facebook:AppId"];
+                options.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+                options.AccessDeniedPath = "/AccessDeniedPathInfo";
+            });
 
             var connectionString = builder.Configuration.GetConnectionString("WoselkoConnectionStringDev_WordCloud_v1") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<WordCloudDbContext>(options =>
